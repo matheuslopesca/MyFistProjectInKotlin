@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MyFistProjectInKotlin:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyFistProjectInKotlin_jar</output-path>
+    <root id="archive" name="MyFistProjectInKotlin.jar" />
+  </artifact>
+</component>
