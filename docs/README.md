@@ -41,6 +41,7 @@ A matemática e lógica por trás do código.
 - [Modificadores de Visibilidade](classes/Visibility.md): public, private, internal.
 - [Construtores](classes/Constructors.md): Primários, secundários e bloco `init`.
 - [Classes e Objetos](classes/ClassesObjects.md): Propriedades vs Campos.
+- [Objetos e Singletons](classes/ObjectsAndSingletons.md): `object` declaration, `companion object` e Padrão Factory.
 
 ### 8. Prática (`exercises`)
 - [Catálogo de Exercícios](exercises/Exercises.md): Lista do que foi praticado.

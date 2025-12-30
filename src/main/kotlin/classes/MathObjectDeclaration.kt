@@ -1,17 +1,15 @@
 package main.kotlin.classes
-//Companion object
+//object declarations
 fun main() {
 
-    println(Math.sum(20, 10))
+    println(Math2.sum(20, 10))
 
-    println(Math().subtract(10, 4))
+    println(Math2.subtract(20, 10))
 }
 
-class Math {
+object Math2 {
 
     fun subtract(a: Int, b: Int) = a - b
 
-    companion object {
         fun sum(a: Int, b: Int) = a + b
-    }
 }
