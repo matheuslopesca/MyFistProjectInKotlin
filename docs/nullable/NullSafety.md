@@ -1,21 +1,42 @@
-# Segurança Nula (Null Safety)
+# Null Safety: O Fim do Erro de Bilhão de Dólares
 
-Baseado em todo o pacote `nullable`.
+O criador do conceito de referência nula (Tony Hoare) chamou isso de seu "erro de um bilhão de dólares", devido à quantidade de falhas de sistema causadas por `NullPointerException` (NPE) na história.
+O sistema de tipos do Kotlin foi desenhado para eliminar o NPE do código.
 
-## O Problema do Bilhão de Dólares
-O sistema de tipos de Kotlin visa eliminar o perigo de referências nulas (`NullPointerException`).
+## Tipos Nullable vs Non-Nullable
+Kotlin separa o mundo em dois:
 
-## Tipos Anuláveis
-Por padrão, tipos não aceitam `null`. Para permitir, adicione `?` ao tipo.
+1.  **Não-Nulo (Padrão)**: `String`, `Int`, `Carro`.
+    -   Nunca, em hipótese alguma, podem guardar `null`.
+    -   Seguro de usar métodos e propriedades.
+    -   `var s: String = null` -> **Erro de Compilação!** (O programa nem roda).
+
+2.  **Anulável (Nullable)**: `String?`, `Int?`, `Carro?`.
+    -   Podem guardar um valor ou `null`.
+    -   Para acessar métodos, você é **obrigado** a verificar antes.
+    -   `val l = s.length` -> **Erro de Compilação!** (E se s for null?).
+
+## Ferramentas de Manuseio
+
+### 1. Safe Call (`?.`)
+"Se não for nulo, acesse. Se for nulo, retorne nulo e não quebre".
 ```kotlin
-var s: String = "abc" // Não pode ser null
-var s2: String? = null // Pode ser null
+val tamanho: Int? = texto?.length 
+// Se texto for null, tamanho vira null. O programa continua.
 ```
 
-## Operadores de Segurança
-1.  **Safe Call `?.`**: Acessa a propriedade/método somente se não for nulo. Caso contrário, retorna null.
-    `val l = s?.length`
-2.  **Elvis Operator `?:`**: Define um valor padrão caso a expressão à esquerda seja nula.
-    `val l = s?.length ?: 0`
-3.  **Not-Null Assertion `!!`**: Converte forçadamente um tipo anulável para não-anulável. Lança exceção se for null. Use com cuidado!
-    `val l = s!!.length`
+### 2. Elvis Operator (`?:`)
+Dá um valor padrão caso o resultado seja nulo. (Parece o topete do Elvis).
+```kotlin
+val tamanho: Int = texto?.length ?: 0
+// Se texto for null, usa 0. Garante que 'tamanho' nunca será nulo.
+```
+É muito usado para early-return: `val nome = pessoa.nome ?: return`
+
+### 3. Not-Null Assertion (`!!`)
+"Eu juro que não é nulo, confia em mim".
+Converte forçadamente `String?` para `String`.
+```kotlin
+val t = texto!!.length
+```
+**Perigo**: Se você estiver errado e `texto` for nulo, o programa explode com `NullPointerException`. **Evite usar em produção** a menos que tenha 100% de certeza absoluta.

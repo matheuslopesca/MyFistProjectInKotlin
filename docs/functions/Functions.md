@@ -1,18 +1,31 @@
-# Funções Básicas
+# Funções: Os Blocos de Construção
 
-Baseado em `simpleFunction.kt`, `simpleFunction2.kt`, `functionWithReturn.kt`, `unitReturn.kt`, `functionsAsExpression.kt`.
+Funções encapsulam lógica para ser reutilizada. Kotlin moderniza a sintaxe de funções para ser mais concisa e expressiva.
 
-## Definição
-Definidas com a palavra-chave `fun`.
+## Sintaxe Básica
 ```kotlin
-fun nomeDaFuncao(param: Tipo): Retorno { corpo }
+fun nome(parametro: Tipo): TipoRetorno {
+    return valor
+}
 ```
 
-## Retorno Unit
-Se a função não retorna nada útil, seu tipo de retorno é `Unit` (equivalente ao `void` do Java). Ele pode ser omitido na declaração.
+## Unit (O novo Void)
+Se uma função não retorna nada útil (apenas faz um efeito colateral, como imprimir na tela ou salvar no banco), ela retorna `Unit`.
+- O `Unit` pode ser omitido explicitamente na assinatura.
+- Diferente do `void` do Java, `Unit` é um objeto real (singleton), o que facilita programação genérica.
 
-## Single-Equation Functions
-Se a função possui apenas uma expressão, pode-se omitir as chaves e usar `=`. O tipo de retorno é inferido.
+## Single-Expression Functions (Funções de uma linha)
+Se sua função contém apenas uma expressão (uma conta, uma chamada, um if), você pode remover as chaves `{}` e o `return`, usando o igual `=`.
+
+O compilador **infere o tipo de retorno** automaticamente.
+
 ```kotlin
-fun multiply(a: Int, b: Int) = a * b
+// Tradicional
+fun quadrado(x: Int): Int {
+    return x * x
+}
+
+// Single-Expression (Muito mais Kotlin!)
+fun quadrado(x: Int) = x * x
 ```
+Isso incentiva a criação de funções pequenas e focadas.

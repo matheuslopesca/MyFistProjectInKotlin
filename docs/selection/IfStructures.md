@@ -1,22 +1,36 @@
-# Estrutura Condicional If
+# Estrutura Condicional: `if` e `else`
 
-Baseado em `if.kt`, `ifElse.kt`, `ifElseif.kt` e `ifExpression.kt`.
+O `if` é a ferramenta básica para bifurcar o código: "Se A for verdade, faça X. Senão, faça Y".
 
-## Estrutura Básica
-Funciona como na maioria das linguagens C-like:
+## O Básico (Declaração Statement)
+Funciona exatamente como em C, Java ou JavaScript.
 ```kotlin
-if (condicao) {
-    // bloco
-} else if (outraCondicao) {
-    // bloco
+if (idade >= 18) {
+    println("Maior de idade")
 } else {
-    // bloco
+    println("Menor de idade")
+}
+```
+O `else if` permite testar múltiplas condições em cascata.
+
+## O Super Poder: `if` como Expressão
+Aqui o Kotlin brilha. Em Java, `if` é apenas uma instrução de controle. Há um operador ternário separado para atribuição: `int max = (a > b) ? a : b;`.
+
+Em Kotlin, **NÃO existe ternário** (`? :`). Por que?
+Porque o próprio `if` **retorna um valor**.
+
+```kotlin
+// Em uma linha, elegante e legível
+val max = if (a > b) a else b
+
+// Ou em bloco
+val status = if (nota > 7) {
+    println("Aprovado com louvor")
+    "Aprovado" // A última linha é o retorno
+} else {
+    println("Estude mais")
+    "Reprovado" // A última linha é o retorno
 }
 ```
 
-## If como Expressão
-Em Kotlin, `if` é uma expressão, o que significa que ele retorna um valor. Isso substitui o operador ternário (`? :`).
-```kotlin
-val max = if (a > b) a else b
-```
-A última linha do bloco é o valor retornado.
+**Regra**: Quando usado como expressão (para retornar valor), o ramo `else` se torna **obrigatório**. O compilador precisa saber o que devolver caso a condição falhe.
