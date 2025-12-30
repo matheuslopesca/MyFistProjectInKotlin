@@ -1,9 +1,5 @@
 package main.kotlin.exercises
 
-import kotlin.math.absoluteValue
-import kotlin.math.max
-import kotlin.random.Random
-
 fun main(){
 /*
     print("Digite o Primeiro valor do range:")
